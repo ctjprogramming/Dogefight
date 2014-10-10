@@ -6,20 +6,41 @@ public class Cat {
 	// The player has an x and y value on the window, or grid of pixels
 	public double x = 0;
 	public double y = 0;
+	private int xSpeed = 6,
+			ySpeed = 0;
 	// We will only have one image for the player, this bucket.
 	public static final GImage img = new GImage("assets/pics/bucket.png");
 	// This function will update the player's sprite to its correct location on the window
-	public void update(){
-		//TODO randomly move from side to side inside of the screen
-		boolean direction = (int)Math.random() * 2 == 0 ? false : true;
-		
+	private boolean dir = true;
+	public void update(int width, int height){
+		int wallHits = 0;
+		if (dir)
+			this.x += this.xSpeed;
+		else
+			this.x -= this.xSpeed;
+
+		if (this.x < 0/* left side */) {
+			this.dir = true;
+			wallHits++;
+		}
+		if (this.x + Cat.img.getWidth() > width) {
+			this.dir = false;
+			wallHits++;
+		}
+		if (wallHits >= 2)
+			this.ySpeed += 6;
+		if (this.y + 32 > 650)
+			this.y = 0;
+		this.y += 1;
+		// this.y+=this.ySpeed;
+
 	}
 	public static void main(String[] args){
 		for(int i = 0; i<50;i++){
 			System.out.println((int)Math.random() * 2 == 0);
 		}
 	}
-	
+
 	public void draw(){
 		Cat.img.setLocation(this.x, this.y); // Set the player's sprite to its coords
 	}
