@@ -1,7 +1,6 @@
 // You'll rarely mess with this class after creating it. This just stores user input each cycle of the game loop.
 // Import Event and Key Listeners
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 // Store boolean keys for anything we might be tracking.
 public class Inputs implements KeyListener {
@@ -21,6 +20,7 @@ public class Inputs implements KeyListener {
 	public boolean key_r_released = false;
 	// Below, we translate the key codes to our boolean values
 	// so we can use them in the game
+	@Override
 	public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == 38){this.key_up = true;}
         if(e.getKeyCode() == 40){this.key_down = true;}
@@ -33,6 +33,7 @@ public class Inputs implements KeyListener {
         if(e.getKeyCode() == 68){this.key_d = true;}
         if(e.getKeyCode() == 82){this.key_r = true;}
     }	
+	@Override
 	public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == 38){this.key_up = false;}
         if(e.getKeyCode() == 40){this.key_down = false;}
