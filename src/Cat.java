@@ -1,36 +1,29 @@
-// This file will contain the code relevant to our 'Player'
-// Since this class will have images, we import the GImage object
 import acm.graphics.GImage;
 
 public class Cat extends GameObject {
 	private int xSpeed = 6, ySpeed = 0;
 	private int wallHits = 0;
-	// We will only have one image for the player, this bucket.
+	// We will only have one image for the cat, this bucket.
 	public static final GImage img = new GImage("assets/pics/bucket.png");
-	// This function will update the player's sprite to its correct location on
-	// the window
-	private boolean dir = true;
+	private boolean dir = true; //false = left, true = right
 
 	public void update(int width, int height) {
-
-		if (dir == true) {
+		if (dir)
 			this.x += this.xSpeed;
-		}
-		if (dir == false) {
+		else
 			this.x -= this.xSpeed;
-		}
 
-		if (this.x < 0/* left side */) {
+		if (this.x < 0 /* left side */) {
 			wallHits++;
 			this.dir = true;
-
 		}
+		
 		if (this.x + getImg().getWidth() > width) {
 			wallHits++;
 			this.dir = false;
 
 		}
-
+		
 		if (wallHits >= 5) {
 			this.y += 1;
 			// wallHits=0;
@@ -42,7 +35,6 @@ public class Cat extends GameObject {
 		}
 		// this.y+=1;
 		// this.y+=this.ySpeed;
-
 	}
 
 	public GImage getImg() {
